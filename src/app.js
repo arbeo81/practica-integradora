@@ -31,4 +31,23 @@ app.use("/api/carts", cartsRouter);
 app.use("/api/products", productsRouter);
 app.use("/", viewsRouter);
 
+io.on("connection", async (socket) => {
+  console.log("Successful Connection");
+  // Escucha el evento "productList" emitido por el cliente
+  socket.on("productList", (data) => {
+    // Emitir el evento "updatedProducts" a todos los clientes conectados
+    io.emit("updatedProducts", data);
+  });
+
+  let messages = (await messageModel.find()) ? await messageModel.find() : [];
+
+  socket.broadcast.emit("alerta");
+  socket.emit("logs", messages);
+  socket.on("message", (data) => {
+    messages.push(data);
+    messageModel.create(messages);
+    io.emit("logs", messages);
+  });
+});
+
 mongoose.connect(`mongodb+srv://${dbUser}:${dbPasword}@cluster0.orjlcud.mongodb.net/${dbName}`)

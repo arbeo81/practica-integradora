@@ -17,6 +17,16 @@ router.get("/", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+  router.get("/realtimeproducts", async (req, res) => {
+    try {
+      const products = await productModel.find().lean().exec()
+      res.render('realTimeProducts', { products })
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ status: 'error', error: error.message })
+    }
+  })
+
 });
 
 export default router;

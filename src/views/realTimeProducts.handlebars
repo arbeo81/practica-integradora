@@ -1,0 +1,46 @@
+<div class="container">
+  <h2 class="h2-title">Real Time Products</h2>
+
+  <hr class=""/>
+
+  <div class="form-container">
+    <div class="form-title">
+      <h5>Created Products</h5>
+    </div>
+    <div class="form-text">
+      <form id="form">
+        <div class="mb-2">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-input" name="title" id="title" required/>
+        </div>
+        <div class="mb-2">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-input" name="description" id="description" required/>
+        </div>
+        <div class="mb-2">
+          <label for="Price" class="form-label">Price</label>
+          <input type="number" class="form-input" name="Price" id="Price" step="0.01"required/>
+        </div>
+        <div class="mb-2">
+          <label for="code" class="form-label">Code</label>
+          <input type="text" class="form-input" name="code" id="code" required/>
+        </div>
+        <div class="mb-2">
+          <label for="category" class="form-label">Category</label>
+          <input type="text" class="form-input" name="category" id="category" required />
+        </div>
+        <div class="mb-2">
+          <label for="Stock" class="form-label">Stock</label>
+          <input type="number" class="form-input" name="Stock" id="Stock" required />
+        </div>
+        <button type="submit" class="btn-create" id="addProduct">Create Product</button>
+      </form>
+    </div>
+  </div>
+
+  <hr class=""/>
+
+  {{> table}}
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
